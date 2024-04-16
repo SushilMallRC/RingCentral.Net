@@ -20,7 +20,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Remove Previous Result 
-        run: rm -r RingCentral.Tests/TestResults
+        run: rm -rf RingCentral.Tests/TestResults
       - name: Code Coverage
         run: dotnet test --collect:"XPlat Code Coverage"
       - name: Code Coverage
