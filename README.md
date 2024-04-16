@@ -52,7 +52,7 @@ To specify an output channel, you need to specify a listener:
 Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
 ```
 
-Code about will print logs to the console. For more detail please refer to [Trace.Listeners Property](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.trace.listeners?view=net-6.0).
+Code about will print log to the console. For more detail please refer to [Trace.Listeners Property](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.trace.listeners?view=net-6.0).
 
 [Demo project](https://github.com/tylerlong/rc-logging-demo-csharp).
 
