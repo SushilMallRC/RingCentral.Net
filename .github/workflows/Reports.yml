@@ -23,8 +23,6 @@ jobs:
         run: rm -rf RingCentral.Tests/TestResults
       - name: Code Coverage
         run: dotnet test --collect:"XPlat Code Coverage"
-      - name: Install ReportGenerator
-        run: dotnet tool install -g dotnet-reportgenerator-globaltool
         env:
           RINGCENTRAL_SERVER_URL: ${{ secrets.RINGCENTRAL_SERVER_URL }}
           RINGCENTRAL_CLIENT_ID: ${{ secrets.RINGCENTRAL_CLIENT_ID }}
@@ -32,6 +30,8 @@ jobs:
           RINGCENTRAL_JWT_TOKEN: ${{ secrets.RINGCENTRAL_JWT_TOKEN }}
           RINGCENTRAL_SENDER: ${{ secrets.RINGCENTRAL_SENDER }}
           RINGCENTRAL_RECEIVER: ${{ secrets.RINGCENTRAL_RECEIVER }}
+      - name: Install ReportGenerator
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
       - name: Execute Report Generation
         run: reportgenerator "-reports:RingCentral.Tests/TestResults/*/coverage.cobertura.xml" "-targetdir:RingCentral.Tests/TestResults/coverage-report" -reporttypes:HtmlSummary
       - name: View Report
