@@ -1,18 +1,33 @@
-name: GitHub Pages release
+name: Generate Documentation
+
 on:
   push:
     branches:
-      - master
-permissions:
-  contents: write
+      - main # Change to your default branch
+      - addDocs
+
 jobs:
-  deploy:
+  generate-docs:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version}}
-        uses: actions/setup-python@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Sandcastle
+        run: |
+          wget https://github.com/EWSoftware/SHFB/releases/download/v2022.2.7.0/SHFBInstaller_2022.2.7.0.zip
+          unzip SHFBInstaller_2022.2.7.0.zip
+          sudo wine SHFBInstaller_2022.2.7.0/Setup.exe /s
+
+      - name: Generate Documentation
+        run: SandcastleConsole.exe /project:"./RingCentral.Net.WebSocket.shfbproj"
+
+      - name: Copy documentation to docs directory
+        run: mv ./Documentation/Output/HtmlHelp ./docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          python-version: ${{ matrix.python-version }}
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
