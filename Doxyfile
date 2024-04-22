@@ -4,5 +4,5 @@ GENERATE_HTML = YES
 
 # Source files
 
-INPUT = src
+INPUT = RingCentral.Net.WebSocket
 RECURSIVE = YES
