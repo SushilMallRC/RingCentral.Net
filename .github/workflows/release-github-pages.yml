@@ -1,9 +1,9 @@
-name: Generate Documentation
+name: Generate and Deploy Documentation
 
 on:
   push:
     branches:
-      - main # Change to your default branch
+      - master
       - addDocs
 
 jobs:
@@ -14,17 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Sandcastle
-        run: |
-          wget https://github.com/EWSoftware/SHFB/releases/download/v2022.2.7.0/SHFBInstaller_2022.2.7.0.zip
-          unzip SHFBInstaller_2022.2.7.0.zip
-          sudo wine SHFBInstaller_2022.2.7.0/Setup.exe /s
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
 
       - name: Generate Documentation
-        run: SandcastleConsole.exe /project:"./RingCentral.Net.WebSocket.shfbproj"
-
-      - name: Copy documentation to docs directory
-        run: mv ./Documentation/Output/HtmlHelp ./docs
+        run: doxygen Doxyfile
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
