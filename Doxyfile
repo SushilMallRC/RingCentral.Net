@@ -4,5 +4,5 @@ GENERATE_HTML = YES
 
 # Source files
 
-INPUT = RingCentral.Net.WebSocket
+INPUT = RingCentral.Net.WebSocket RingCentral.Net RingCentral.Net.AuthorizeUri RingCentral.Net.AutoRefresh
 RECURSIVE = YES
