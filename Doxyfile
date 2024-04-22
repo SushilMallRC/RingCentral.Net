@@ -1,0 +1,8 @@
+PROJECT_NAME = "RingCentral .Net SDK"
+OUTPUT_DIRECTORY = docs
+GENERATE_HTML = YES
+
+# Source files
+
+INPUT = src
+RECURSIVE = YES
