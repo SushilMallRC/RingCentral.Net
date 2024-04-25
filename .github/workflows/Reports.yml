@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ master, addReport]
+    branches: [ master,addReport]
   pull_request:
     branches: [ master ]
 
@@ -19,12 +19,8 @@ jobs:
           dotnet-version: 3.1.x
       - name: Restore dependencies
         run: dotnet restore
-      - name: Remove Previous Result 
+      - name: Remove Previous Result
         run: rm -rf RingCentral.Tests/TestResults
-      - name: Install ReportGenerator
-        run: dotnet tool install -g dotnet-reportgenerator-globaltool  
-      - name: Execute Report Generation
-        run: reportgenerator "-reports:RingCentral.Tests/TestResults/*/coverage.cobertura.xml" "-targetdir:RingCentral.Tests/TestResults/coverage-report" -reporttypes:HtmlSummary  
       - name: Code Coverage
         run: dotnet test --collect:"XPlat Code Coverage"
         env:
@@ -34,6 +30,12 @@ jobs:
           RINGCENTRAL_JWT_TOKEN: ${{ secrets.RINGCENTRAL_JWT_TOKEN }}
           RINGCENTRAL_SENDER: ${{ secrets.RINGCENTRAL_SENDER }}
           RINGCENTRAL_RECEIVER: ${{ secrets.RINGCENTRAL_RECEIVER }}
+      - name: Install ReportGenerator
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+      - name: Execute Report Generation
+        run: |
+          find . type f -not -path "RingCentral.Net/Definitions" -not -path "RingCentral.Net/Paths"
+          reportgenerator "-reports:RingCentral.Tests/TestResults/*/coverage.cobertura.xml" "-targetdir:RingCentral.Tests/TestResults/coverage-report" -reporttypes:HtmlSummary
       - name: View Report
         uses: actions/upload-artifact@v4
         with:
