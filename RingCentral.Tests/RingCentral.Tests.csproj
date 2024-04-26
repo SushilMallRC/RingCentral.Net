@@ -1,20 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="6.0.0">
+        <PackageReference Include="coverlet.collector" Version="6.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="dotenv.net" Version="3.1.2"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
-        <PackageReference Include="xunit" Version="2.4.2"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0-release-24177-07" />
+        <PackageReference Include="xunit" Version="2.7.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.8">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -30,15 +29,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\RingCentral.Net.AuthorizeUri\RingCentral.Net.AuthorizeUri.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.AutoRefresh\RingCentral.Net.AutoRefresh.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.Debug\RingCentral.Net.Debug.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.Events\RingCentral.Net.Events.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.PubnubPCL\RingCentral.Net.PubnubPCL.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.RateLimit\RingCentral.Net.RateLimit.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.Retry\RingCentral.Net.Retry.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net.WebSocket\RingCentral.Net.WebSocket.csproj"/>
-        <ProjectReference Include="..\RingCentral.Net\RingCentral.Net.csproj"/>
+        <ProjectReference Include="..\RingCentral.Net.AuthorizeUri\RingCentral.Net.AuthorizeUri.csproj" />
+        <ProjectReference Include="..\RingCentral.Net.AutoRefresh\RingCentral.Net.AutoRefresh.csproj" />
+        <ProjectReference Include="..\RingCentral.Net.Debug\RingCentral.Net.Debug.csproj" />
+        <ProjectReference Include="..\RingCentral.Net.Events\RingCentral.Net.Events.csproj" />
+        <ProjectReference Include="..\RingCentral.Net.RateLimit\RingCentral.Net.RateLimit.csproj" />
+        <ProjectReference Include="..\RingCentral.Net.Retry\RingCentral.Net.Retry.csproj" />
+        <ProjectReference Include="..\RingCentral.Net.WebSocket\RingCentral.Net.WebSocket.csproj" />
+        <ProjectReference Include="..\RingCentral.Net\RingCentral.Net.csproj" />
     </ItemGroup>
 
     <ItemGroup>

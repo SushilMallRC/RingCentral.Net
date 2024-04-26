@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using RingCentral.Net.WebSocket;
 using Xunit;
@@ -11,7 +10,7 @@ namespace RingCentral.Tests
         [Fact]
         public async void SendAndReceive()
         {
-            var rc = await SharedRestClient.GetInstance();
+            var rc = await ReusableRestClient.GetInstance();
             var webSocketExtension = new WebSocketExtension(new WebSocketOptions {debugMode = true});
             await rc.InstallExtension(webSocketExtension);
             var eventFilters = new[] {"/restapi/v1.0/account/~/extension/~/message-store"};
@@ -32,14 +31,12 @@ namespace RingCentral.Tests
         [Fact]
         public async void RevokeSubscription()
         {
-            var rc = await SharedRestClient.GetInstance();
+            var rc = await ReusableRestClient.GetInstance();
             var webSocketExtension = new WebSocketExtension(new WebSocketOptions {debugMode = true});
             await rc.InstallExtension(webSocketExtension);
             var eventFilters = new[] {"/restapi/v1.0/account/~/extension/~/message-store"};
             var subscription = await webSocketExtension.Subscribe(eventFilters, message => { });
-            webSocketExtension.RawMessageReceived += (sender, s) =>
-            {
-            };
+            webSocketExtension.RawMessageReceived += (sender, s) => { };
             await Task.Delay(5000);
             await subscription.Revoke();
             webSocketExtension.enabled = false;

@@ -1,12 +1,16 @@
 # RingCentral.Net
 
 [![Build Status](https://github.com/ringcentral/RingCentral.Net/workflows/.NET/badge.svg?branch=master)](https://github.com/ringcentral/RingCentral.Net/actions)
-
+[![Code Document](https://img.shields.io/badge/csharpdoc-reference-blue?branch=master&service=github)](https://ringcentral.github.io/RingCentral.Net/html/annotated.html)
 
 ## Getting help and support
 
 If you are having difficulty using this SDK, or working with the RingCentral API, please visit our [developer community forums](https://community.ringcentral.com/spaces/144/) for help and to get quick answers to your questions. If you wish to contact the RingCentral Developer Support team directly, please [submit a help ticket](https://developers.ringcentral.com/support/create-case) from our developer website.
 
+## Additional resources
+
+* [RingCentral API Reference](https://developer.ringcentral.com/api-docs/latest/index.html) - an interactive reference for the RingCentral API that allows developers to make API calls with no code.
+* [Document](https://ringcentral.github.io/RingCentral.Net/html/annotated.html) - an interactive reference for the SDK code documentation.
 
 ## Installation
 
@@ -147,32 +151,23 @@ cd <ProjectName>
 dotnet pack
 ```
 
-#### RingCentral.Net.Pubnub
-
-Update version number in `RingCentral.Net.Pubnub\Properties\AssemblyInfo.cs`
-Update version number in `RingCentral.Net.Pubnub\RingCentral.Net.Pubnub.nuspec`
-
-Rebuild solution
-
-```
-cd RingCentral.Net.Pubnub
-nuget pack
-```
-
-Reference: [Quickstart: Create and publish a package using Visual Studio (.NET Framework, Windows)](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-visual-studio-net-framework)
-
-
 ## Todo
 
 - Add batch get to auto-generated sample code
-- Exception error message for binary data? Will it print a LOT?
 - Add icons to NuGet packages
+
+
+## Development Notes
+
+I tried to migrate from Newtonsoft.Json to System.Text.Json, but it's not easy.
+Especially System.Text.Json doesn't automatically convert string to number. It doesn't even automatically convert double to int64.
+Considering the complexity and benefits of the migration, I decided to keep using Newtonsoft.Json for now.
+Ref: https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft
 
 
 ## Code coverage
 
 Install the following globally if you haven't done so:
-
 ```
 dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
@@ -182,7 +177,6 @@ dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
 dotnet test -settings RingCentral.Tests/coverlet.runsettings.xml
 ```
-
 The result is located in RingCentral.Tests/TestResults/
 
 
@@ -191,5 +185,4 @@ The result is located in RingCentral.Tests/TestResults/
 ```
 ~/.dotnet/tools/reportgenerator -reports:"RingCentral.Tests/TestResults/239bdb87–151b-42ac-acec-1f604f8c02c5/coverage.cobertura.xml" -targetdir:RingCentral.Tests/CoverageReport -reporttypes:Html
 ```
-
 Open RingCentral.Tests/CoverageReport/index.html in a browser.
