@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageId>TEST-RingCentral.Net.RateLimit</PackageId>
+        <PackageId>TEST.RingCentral.Net.RateLimit</PackageId>
         <PackageVersion>0.0.1</PackageVersion>
         <Authors>Sushil Mall (sushil.mall@ringcentral.com)</Authors>
         <Description>Rate limit extension for RingCentral.Net</Description>
