@@ -3,19 +3,6 @@ on:
   push:
     tags:
       - '*'
-
-env:
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-  DOTNET_NOLOGO: true
-  NuGetDirectory: ${{ github.workspace}}/nuget
-  RINGCENTRAL_SERVER_URL: ${{ secrets.RINGCENTRAL_SERVER_URL }}
-  RINGCENTRAL_CLIENT_ID: ${{ secrets.RINGCENTRAL_CLIENT_ID }}
-  RINGCENTRAL_CLIENT_SECRET: ${{ secrets.RINGCENTRAL_CLIENT_SECRET }}
-  INGCENTRAL_JWT_TOKEN: ${{ secrets.RINGCENTRAL_JWT_TOKEN }}
-  RINGCENTRAL_SENDER: ${{ secrets.RINGCENTRAL_SENDER }}
-  RINGCENTRAL_RECEIVER: ${{ secrets.RINGCENTRAL_RECEIVER }}
-
-
 jobs:
   Create_Nuget:
     runs-on: macos-latest
