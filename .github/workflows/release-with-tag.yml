@@ -13,7 +13,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore  
+    - name: Build
+      run: dotnet build --configuration Release      
     - name: Test
       run: dotnet test --no-build --verbosity normal
       env:
@@ -22,9 +24,7 @@ jobs:
         RINGCENTRAL_CLIENT_SECRET: ${{ secrets.RINGCENTRAL_CLIENT_SECRET }}
         RINGCENTRAL_JWT_TOKEN: ${{ secrets.RINGCENTRAL_JWT_TOKEN }}
         RINGCENTRAL_SENDER: ${{ secrets.RINGCENTRAL_SENDER }}
-        RINGCENTRAL_RECEIVER: ${{ secrets.RINGCENTRAL_RECEIVER }}      
-    - name: Build
-      run: dotnet build --configuration Release      
+        RINGCENTRAL_RECEIVER: ${{ secrets.RINGCENTRAL_RECEIVER }}          
     - name: Pack
       run: dotnet pack --configuration Release --output ./output --no-build      
     - name: Publish to NuGet
