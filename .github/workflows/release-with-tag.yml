@@ -1,3 +1,8 @@
+# This Workflow is triggered when a new tag is pushed to the repository. 
+# The test job runs on macOS and restores dependencies, builds the project, and runs the tests.
+# The Publish_Nuget job runs on macOS and depends on the Test job. It restores dependencies, builds the project, packs the project, and publishes the NuGet package to NuGet.org.
+# Publish_Nuget job skip the publish if version already exists in NuGet.org.
+
 name: Release
 on:
   push:
