@@ -31,7 +31,4 @@ jobs:
       run: dotnet build --configuration Release
            dotnet pack --configuration Release --output ./output --no-build
     - name: Publish to NuGet
-      uses: NuGet/nuget-push-action@v1
-      with:
-        nuget_key: ${{ secrets.NUGET_APIKEY }} # Make sure to set this secret in your repository settings
-        nuget_package: './output/*.nupkg'
+      run: dotnet nuget push ./output/*.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
