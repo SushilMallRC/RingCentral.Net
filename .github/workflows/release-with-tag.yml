@@ -4,7 +4,7 @@ on:
     tags:
       - '*'
 jobs:
-  Create_Nuget:
+  Publish_Nuget:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
@@ -14,6 +14,15 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      env:
+        RINGCENTRAL_SERVER_URL: ${{ secrets.RINGCENTRAL_SERVER_URL }}
+        RINGCENTRAL_CLIENT_ID: ${{ secrets.RINGCENTRAL_CLIENT_ID }}
+        RINGCENTRAL_CLIENT_SECRET: ${{ secrets.RINGCENTRAL_CLIENT_SECRET }}
+        RINGCENTRAL_JWT_TOKEN: ${{ secrets.RINGCENTRAL_JWT_TOKEN }}
+        RINGCENTRAL_SENDER: ${{ secrets.RINGCENTRAL_SENDER }}
+        RINGCENTRAL_RECEIVER: ${{ secrets.RINGCENTRAL_RECEIVER }}      
     - name: Build
       run: dotnet build --configuration Release      
     - name: Pack
