@@ -32,4 +32,4 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --output ./output --no-build      
     - name: Publish to NuGet
-      run: dotnet nuget push ./output/*.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./output/*.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json --symbol-source https://api.nuget.org/v3/index.json
